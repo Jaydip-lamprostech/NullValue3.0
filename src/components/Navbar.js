@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import logo from "../styles/NullValue3.0logo.png";
 import Cookies from "universal-cookie";
 import "../styles/Navbar/navbar.scss";
 const Navbar = ({ setOpenWalletOption }) => {
@@ -22,7 +23,10 @@ const Navbar = ({ setOpenWalletOption }) => {
     <>
       <div className="navbar-main">
         <div className="navbar-left">
-          <div className="navbar-logo">Ask2Web3</div>
+          <img src={logo} alt="logo" />
+          <div className="navbar-logo">
+            <span>NullValue3.0</span>
+          </div>
         </div>
         <div className="navbar-middle">
           {/* <div className="searchbar">
