@@ -1,0 +1,109 @@
+.nv-main-container {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background-image: url("../coverImage.png");
+  background-size: cover;
+}
+.nv-main-container::before {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.697);
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+
+  //   z-index: -1;
+}
+.nv-inside-main {
+  position: relative;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.nv-first-section {
+  margin: 0 40px;
+  min-height: 100vh;
+  display: flex;
+  //   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .nv-first-left {
+    width: 70%;
+
+    h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+    }
+    span {
+      font-size: 1.5rem;
+    }
+    button {
+      margin: 50px 0;
+      align-items: center;
+      background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
+      border: 0;
+      border-radius: 8px;
+      box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+      box-sizing: border-box;
+      color: black;
+      display: flex;
+      font-family: Phantomsans, sans-serif;
+      font-size: 18px;
+      justify-content: center;
+      line-height: 1em;
+      max-width: 100%;
+      min-width: 140px;
+      padding: 3px;
+      text-decoration: none;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.2s;
+      -webkit-box-shadow: 3px 3px 25px 22px #ffffff;
+      -moz-box-shadow: 3px 3px 25px 22px #ffffff;
+      box-shadow: 3px 3px 25px 22px #ffffff;
+      z-index: 2;
+    }
+
+    button:active,
+    button:hover {
+      outline: 0;
+      color: white;
+    }
+
+    button span {
+      background-color: white;
+      padding: 16px 24px;
+      border-radius: 6px;
+      width: 100%;
+      height: 100%;
+      transition: 200ms;
+    }
+
+    button:hover span {
+      background: none;
+    }
+
+    button:active {
+      transform: scale(0.9);
+    }
+  }
+  .nv-first-right {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .nv-first-right-box {
+      //   background-color: #af40ff;
+    }
+  }
+}
