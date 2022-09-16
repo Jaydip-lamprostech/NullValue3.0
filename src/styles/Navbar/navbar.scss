@@ -11,7 +11,7 @@
   align-content: center;
   background-color: #172b4d;
   color: #fff;
-  padding: 5px 20px;
+  padding: 20px 40px;
   font-size: 18px;
   margin: 0;
   position: sticky;
@@ -22,15 +22,17 @@
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
+
     span {
       font-weight: 700;
       font-size: 20px;
     }
+
     img {
       width: 64px;
     }
-    .navbar-logo {
-    }
+
+    .navbar-logo {}
   }
 
   .navbar-middle {
@@ -56,6 +58,7 @@
 
       li {
         font-family: Inconsolata;
+
         &.active {
           background-color: white;
           color: black !important;
@@ -66,9 +69,61 @@
           color: inherit;
         }
 
-        .connect-btn {
-          font-size: 16px;
+
+        button {
+          // margin: 50px 0;
+          align-items: center;
+          background-image: linear-gradient(144deg, #fd2a4f, #1169c1, #c03ce6);
+          border: 0;
+          border-radius: 8px;
+          box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+          box-sizing: border-box;
+          color: black;
+          display: flex;
+          font-size: 18px;
+          justify-content: center;
+          line-height: 1em;
+          // max-width: 100%;
+          // min-width: 140px;
+          padding: 3px;
+          text-decoration: none;
+          user-select: none;
+          -webkit-user-select: none;
+          touch-action: manipulation;
+          white-space: nowrap;
           cursor: pointer;
+          transition: all 0.2s;
+
+          z-index: 2;
+          //   position: absolute;
+          //   top: 0%;
+          //   right: 10%;
+        }
+
+        button:active,
+        button:hover {
+          outline: 0;
+          color: white;
+          -webkit-box-shadow: 3px 3px 13.5px 5px #a6a6a6;
+          -moz-box-shadow: 3px 3px 13.5px 5px #a6a6a6;
+          box-shadow: 3px 3px 13.5px 5px #a6a6a6;
+        }
+
+        button span {
+          background-color: white;
+          padding: 16px 24px;
+          border-radius: 6px;
+          width: 100%;
+          height: 100%;
+          transition: 200ms;
+        }
+
+        button:hover span {
+          background: none;
+        }
+
+        button:active {
+          transform: scale(0.9);
         }
       }
     }

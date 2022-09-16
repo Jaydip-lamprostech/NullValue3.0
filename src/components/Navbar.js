@@ -35,14 +35,14 @@ const Navbar = ({ setOpenWalletOption }) => {
         </div>
         <div className="navbar-right">
           <ul>
-            <li className={window.location.pathname === "/" ? "active" : null}>
+            {/* <li className={window.location.pathname === "/" ? "active" : null}>
               <Link to="/">Home</Link>
-            </li>
-            <li
+            </li> */}
+            {/* <li
               className={window.location.pathname === "/info" ? "active" : null}
             >
               <Link to="/info">Crypto News</Link>
-            </li>
+            </li> */}
             {address ? (
               <>
                 <li
@@ -104,7 +104,7 @@ const Navbar = ({ setOpenWalletOption }) => {
                     setOpenWalletOption(true);
                   }}
                 >
-                  Connect
+                  <span className="text">Connect Wallet</span>
                 </button>
               </li>
             )}
