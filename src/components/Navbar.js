@@ -22,12 +22,13 @@ const Navbar = ({ setOpenWalletOption }) => {
   return (
     <>
       <div className="navbar-main">
-        <div className="navbar-left">
-          <img src={logo} alt="logo" />
-          <div className="navbar-logo">
-            <span>NullValue3.0</span>
-          </div>
-        </div>
+        <Link className="logo_link" to="/">
+          <div className="navbar-left">
+            <img src={logo} alt="logo" />
+            <div className="navbar-logo">
+              <span>NullValue3.0</span>
+            </div>
+          </div></Link>
         <div className="navbar-middle">
           {/* <div className="searchbar">
             <input type="text" />

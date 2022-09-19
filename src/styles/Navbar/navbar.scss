@@ -3,6 +3,13 @@
   src: url("../../Inconsolata-Medium.ttf");
 }
 
+a.logo_link,
+a.logo_link:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+
 .navbar-main {
   display: flex;
   width: 100%;

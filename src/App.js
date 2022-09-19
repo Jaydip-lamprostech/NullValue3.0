@@ -19,7 +19,7 @@ import coinbase from "./components/cbw.png";
 /********************* COMPONENTS ********************/
 import Navbar from "./components/Navbar";
 import Home from "./components/homepage/Home";
-import CryptoInfo from "./components/crypto-info/CryptoInfo";
+// import CryptoInfo from "./components/crypto-info/CryptoInfo";
 import AddQuestions from "./components/questions/AddQuestions";
 import DisplayQuestions from "./components/questions/DisplayQuestions";
 import SingleQuestion from "./components/questions/SingleQuestion";
@@ -208,7 +208,7 @@ const App = () => {
               <Route exact path="/" element={<Home />} />
 
               {/* <Route exact path="test" element={<Test />} /> */}
-              <Route
+              {/* <Route
                 exact
                 path="/info"
                 element={
@@ -219,7 +219,7 @@ const App = () => {
                     account={account}
                   />
                 }
-              />
+              /> */}
               <Route
                 path="/ask-question"
                 element={
