@@ -30,6 +30,9 @@
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
 }
+span.landing-page-span {
+  margin-bottom: 20px;
+}
 .sponser-grid-item {
   display: flex;
   flex-direction: row;

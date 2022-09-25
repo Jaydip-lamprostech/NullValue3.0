@@ -5,6 +5,7 @@ import Downarrow from "../down-arrow";
 import Logo from "./logo.png";
 import Faq from "react-faq-component";
 import { Intercom, Window, Launcher } from "@relaycc/receiver";
+
 const data = {
   title: "FAQ (How it works)",
   rows: [

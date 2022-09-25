@@ -27,7 +27,7 @@ const Navbar = ({ setOpenWalletOption }) => {
           <div className="navbar-left">
             <img src={logo} alt="logo" />
             <div className="navbar-logo">
-              <span>NullValue3.0</span>
+              <span>NullValue 3.0</span>
             </div>
           </div>
         </Link>

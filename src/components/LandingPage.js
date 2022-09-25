@@ -9,6 +9,7 @@ import avatar3 from "../assets/images/avatar5.jpg";
 import avatar4 from "../assets/images/avatar10.jpg";
 import eye from "../assets/images/eye.svg";
 import folder from "../assets/images/folder.svg";
+import { WorldIDWidget } from "@worldcoin/id";
 
 import skale from "../assets/images/skale_logo.svg";
 import xmtp from "../assets/images/xmtp logo.svg";
@@ -24,10 +25,22 @@ function LandingPage() {
           <section className="nv-first-section">
             <div className="nv-inside-first">
               <h1>Join the world's biggest Q & A network!</h1>
-              <span>
+              <span className="landing-page-span">
                 Connect to our social questions & Answers Engine to ask
                 questions answer people's qustions & connect with other people.
               </span>
+              <div className="world-id">
+                <WorldIDWidget
+                  actionId="wid_BPZsRJANxct2cZxVRyh80SFG" // obtain this from developer.worldcoin.org
+                  signal="my_signal"
+                  enableTelemetry
+                  onSuccess={(verificationResponse) =>
+                    console.log(verificationResponse)
+                  } // pass the proof to the API or your smart contract
+                  onError={(error) => console.error(error)}
+                  debug={true} // to aid with debugging, remove in production
+                />
+              </div>
               {/* <img src={heroimg} alt="heroImage" /> */}
             </div>
             {/* <div className="nv-first-right">
