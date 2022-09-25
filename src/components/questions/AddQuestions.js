@@ -6,14 +6,19 @@ import { create } from "ipfs-http-client";
 import membericon from "./group.png";
 import staticon from "./stats.png";
 import Sidebar from "./Sidebar";
-
-const KeyCodes = {
-  comma: 188,
-  enter: 13,
-};
-const delimiters = [KeyCodes.comma, KeyCodes.enter];
+import { connect } from "@tableland/sdk";
 
 const AddQuestions = ({ mainContract, account }) => {
+  // const tableland = await connect({
+  //   network: "testnet",
+  //   chain: "polygon-mumbai",
+  // });
+
+  const KeyCodes = {
+    comma: 188,
+    enter: 13,
+  };
+  const delimiters = [KeyCodes.comma, KeyCodes.enter];
   const [Question, setQuestion] = useState("");
   const editorRef = useRef(null);
   const [title, setTitle] = useState("");
@@ -149,7 +154,7 @@ const AddQuestions = ({ mainContract, account }) => {
                     automatic_uploads: true,
                     file_picker_types: "image",
                     file_picker_callback: function (callback, value, meta) {
-                      if (meta.filetype == "image") {
+                      if (meta.filetype === "image") {
                         var input = document.getElementById("my-file");
                         input.click();
                         input.onchange = function () {
@@ -203,7 +208,7 @@ const AddQuestions = ({ mainContract, account }) => {
             </div>
           </div>
         </div>
-        <Sidebar mainContract={mainContract} />
+        {/* <Sidebar mainContract={mainContract} /> */}
       </div>
     </>
   );

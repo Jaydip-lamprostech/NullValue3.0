@@ -28,9 +28,8 @@ import Chat from "./components/chat/Chat";
 import Profile from "./components/users/Profile";
 import FindUsers from "./components/users/FindUsers";
 import SingleUser from "./components/users/SingleUser";
-import Login from "./components/login/Login";
+
 import ByToken from "./components/users/token/ByToken";
-import CryptoDisplayArticle from "./components/crypto-info/CryptoDisplayArticle";
 
 /********************* CSS CLASS ********************/
 import "./index.css";
@@ -38,13 +37,16 @@ import "./App.scss";
 
 import Stack from "./artifacts/contracts/Stack.sol/Stack.json";
 import customToken from "./artifacts/contracts/customToken.sol/customToken.json";
-import Test from "./components/Test";
+// import Test from "./components/Test";
 import LandingPage from "./components/LandingPage";
+import { Intercom, Window, Launcher } from "@relaycc/receiver";
 
-const StackAddress = "0x6cc1A5F4C7187e5C6D52Fb6c51fcE68f52E7d8F8";
-const customTokenAddress = "0x869A6aD54952b2F3C4215d27789d8DF1b3F5d730";
+const StackAddress = "0x755507d22c60f7c24fbbb0c0a1fd4dea827050bf";
+const customTokenAddress = "0xe0d0282893f9c234862de16e55a2460295a56e35";
 
 const App = () => {
+  const [wallet, setWallet] = useState("");
+
   const { activate, deactivate } = useWeb3React();
   const [openWalletOption, setOpenWalletOption] = useState(false);
   // const [address, setAddress] = useState("");
@@ -72,6 +74,7 @@ const App = () => {
     setAccount(connected);
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
+    setWallet(signer);
     let networkName = await provider.getNetwork();
     let chainId = networkName.chainId;
     window.ethereum.on("chainChanged", (chainId) => {
@@ -200,12 +203,16 @@ const App = () => {
   return (
     <>
       <div className="App">
+        <Launcher wallet={wallet} />
+        <Intercom>
+          <Window />
+        </Intercom>
+
         <Router>
           <Navbar setOpenWalletOption={setOpenWalletOption} />
           <div className="main-content">
             <Routes>
-              <Route exact path="/test" element={<LandingPage />} />
-              <Route exact path="/" element={<Home />} />
+              <Route exact path="/" element={<LandingPage />} />
 
               {/* <Route exact path="test" element={<Test />} /> */}
               {/* <Route
@@ -310,18 +317,7 @@ const App = () => {
                 }
               />
 
-              <Route
-                path="/displayarticle"
-                element={
-                  <CryptoDisplayArticle
-                    tokenContract={tokenContract}
-                    mainContract={mainContract}
-                    web3Handler={web3Handler}
-                    account={account}
-                  />
-                }
-              />
-              <Route path="/login" element={<Login />} />
+              {/* <Route path="/login" element={<Login />} /> */}
             </Routes>
           </div>
         </Router>

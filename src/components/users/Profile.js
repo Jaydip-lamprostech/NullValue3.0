@@ -51,9 +51,9 @@ const Profile = ({ mainContract, account }) => {
     getProfileData();
     // setLoading(false);
   }, [mainContract]);
-  if (isLoading) {
-    return <LoadingAnimation />;
-  }
+  // if (isLoading) {
+  //   return <LoadingAnimation />;
+  // }
 
   return (
     <>

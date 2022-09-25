@@ -28,7 +28,8 @@ const Navbar = ({ setOpenWalletOption }) => {
             <div className="navbar-logo">
               <span>NullValue3.0</span>
             </div>
-          </div></Link>
+          </div>
+        </Link>
         <div className="navbar-middle">
           {/* <div className="searchbar">
             <input type="text" />
@@ -36,14 +37,6 @@ const Navbar = ({ setOpenWalletOption }) => {
         </div>
         <div className="navbar-right">
           <ul>
-            {/* <li className={window.location.pathname === "/" ? "active" : null}>
-              <Link to="/">Home</Link>
-            </li> */}
-            {/* <li
-              className={window.location.pathname === "/info" ? "active" : null}
-            >
-              <Link to="/info">Crypto News</Link>
-            </li> */}
             {address ? (
               <>
                 <li
@@ -73,13 +66,7 @@ const Navbar = ({ setOpenWalletOption }) => {
                 >
                   <Link to="/add-article">Add Article</Link>
                 </li>
-                <li
-                  className={
-                    window.location.pathname === "/message" ? "active" : null
-                  }
-                >
-                  <Link to="/message">Messages</Link>
-                </li>
+
                 <li
                   className={
                     window.location.pathname === "/find-profile"

@@ -9,7 +9,6 @@ a.logo_link:hover {
   text-decoration: none;
 }
 
-
 .navbar-main {
   display: flex;
   width: 100%;
@@ -39,7 +38,8 @@ a.logo_link:hover {
       width: 64px;
     }
 
-    .navbar-logo {}
+    .navbar-logo {
+    }
   }
 
   .navbar-middle {
@@ -64,18 +64,21 @@ a.logo_link:hover {
       align-content: center;
 
       li {
-        font-family: Inconsolata;
+        // font-family: Inconsolata;
+        font-weight: 600;
+        padding: 10px 20px;
+        text-decoration: none;
 
         &.active {
           background-color: white;
-          color: black !important;
+          color: #1169c1 !important;
+          // color: black !important;
         }
 
         a {
           text-decoration: none;
           color: inherit;
         }
-
 
         button {
           // margin: 50px 0;
