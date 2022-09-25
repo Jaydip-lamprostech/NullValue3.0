@@ -356,9 +356,9 @@ function LandingPage() {
             <div className="sponser-grid-item">
               <img src={xmtp} alt="xmtp logo" />
             </div>
-            <div className="sponser-grid-item">
+            {/* <div className="sponser-grid-item">
               <img src={polygon} alt="polygon" />
-            </div>
+            </div> */}
             <div className="sponser-grid-item">
               <img src={worldcoin} alt="worlcoin" />
             </div>

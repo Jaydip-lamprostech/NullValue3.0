@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import logo from "../styles/NullValue3.0logo.png";
 import Cookies from "universal-cookie";
 import "../styles/Navbar/navbar.scss";
+import Unstoppable from "./unstoppabledomains/Unstoppable";
 const Navbar = ({ setOpenWalletOption }) => {
   const cookie = new Cookies();
   const [address, setAddress] = useState(cookie.get("account"));
@@ -85,16 +86,21 @@ const Navbar = ({ setOpenWalletOption }) => {
                 </li>
               </>
             ) : (
-              <li>
-                <button
-                  className="connect-btn"
-                  onClick={() => {
-                    setOpenWalletOption(true);
-                  }}
-                >
-                  <span className="text">Connect Wallet</span>
-                </button>
-              </li>
+              <>
+                <li>
+                  <Unstoppable />
+                </li>
+                <li>
+                  <button
+                    className="connect-btn"
+                    onClick={() => {
+                      setOpenWalletOption(true);
+                    }}
+                  >
+                    <span className="text">Connect Wallet</span>
+                  </button>
+                </li>
+              </>
             )}
           </ul>
         </div>
