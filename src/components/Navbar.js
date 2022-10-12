@@ -5,13 +5,10 @@ import Cookies from "universal-cookie";
 import "../styles/Navbar/navbar.scss";
 import Unstoppable from "./unstoppabledomains/Unstoppable";
 
-
 const Navbar = ({ setOpenWalletOption, userAddress }) => {
   const cookie = new Cookies();
   const [address, setAddress] = useState(cookie.get("account"));
   const location = useLocation();
-
- 
 
   useEffect(() => {
     const addr = cookie.get("account");
@@ -89,29 +86,22 @@ const Navbar = ({ setOpenWalletOption, userAddress }) => {
                   <Link to="profile">Profile</Link>
                 </li>
                 <li>
-                {userAddress
-                    ?
-                      <span className="udname">{userAddress}</span>
-                    : null}
+                  {userAddress ? (
+                    <span className="udname">{userAddress}</span>
+                  ) : null}
                 </li>
               </>
             ) : (
               <>
-                
                 <li>
-                  
-                   
-                    <button
+                  <button
                     className="connect-btn"
                     onClick={() => {
                       setOpenWalletOption(true);
                     }}
-                    
                   >
                     <span className="text">Connect Wallet</span>
                   </button>
-                  
-                  
                 </li>
               </>
             )}
