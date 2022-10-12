@@ -3,17 +3,22 @@ import "./Questions.scss";
 import { Editor } from "@tinymce/tinymce-react";
 import { WithContext as ReactTags } from "react-tag-input";
 import { create } from "ipfs-http-client";
-import membericon from "./group.png";
-import staticon from "./stats.png";
-import Sidebar from "./Sidebar";
 
-const KeyCodes = {
-  comma: 188,
-  enter: 13,
-};
-const delimiters = [KeyCodes.comma, KeyCodes.enter];
+import { connect as TBLconnect } from "@tableland/sdk";
+import axios from "axios";
 
 const AddQuestions = ({ mainContract, account }) => {
+  // const tableland = await connect({
+  //   network: "testnet",
+  //   chain: "polygon-mumbai",
+  // });
+  const [loadingMessage, setLoadingMessage] = useState("loading...");
+  const [questionTableName, setQuestionTableName] = useState("");
+  const KeyCodes = {
+    comma: 188,
+    enter: 13,
+  };
+  const delimiters = [KeyCodes.comma, KeyCodes.enter];
   const [Question, setQuestion] = useState("");
   const editorRef = useRef(null);
   const [title, setTitle] = useState("");
@@ -64,6 +69,47 @@ const AddQuestions = ({ mainContract, account }) => {
     setTags(tags.filter((tag, index) => index !== i));
   };
 
+  const insertIntoTableLand = async () => {
+    const tableland = await TBLconnect({
+      network: "testnet",
+      chain: "polygon-mumbai",
+    });
+    const lastEntry = await tableland.read(
+      `SELECT creators_question_id FROM ${questionTableName} ORDER BY creators_question_id DESC LIMIT 1`
+    );
+    console.log(lastEntry.rows[0][0]);
+
+    const customConfig = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    var data = JSON.stringify({
+      creators_question_id: lastEntry.rows[0][0],
+      creators_questions_table_name: questionTableName,
+    });
+
+    var config = {
+      method: "post",
+      url: `${process.env.REACT_APP_API_URL}/toBeVerified`,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: data,
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        setLoadingMessage("Data inserted successfully...");
+      })
+      .catch(function (error) {
+        setTimeout(() => {
+          setLoadingMessage("Unprocessed data...");
+        }, 5000);
+      });
+  };
   //    //useState
   //     const [emps,setEmps] = useState([
   //         {title:title},{Question:Question},{tags:tags}
@@ -149,7 +195,7 @@ const AddQuestions = ({ mainContract, account }) => {
                     automatic_uploads: true,
                     file_picker_types: "image",
                     file_picker_callback: function (callback, value, meta) {
-                      if (meta.filetype == "image") {
+                      if (meta.filetype === "image") {
                         var input = document.getElementById("my-file");
                         input.click();
                         input.onchange = function () {
@@ -203,7 +249,7 @@ const AddQuestions = ({ mainContract, account }) => {
             </div>
           </div>
         </div>
-        <Sidebar mainContract={mainContract} />
+        {/* <Sidebar mainContract={mainContract} /> */}
       </div>
     </>
   );

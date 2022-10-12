@@ -3,10 +3,15 @@ import { Link, useLocation } from "react-router-dom";
 import logo from "../styles/NullValue3.0logo.png";
 import Cookies from "universal-cookie";
 import "../styles/Navbar/navbar.scss";
-const Navbar = ({ setOpenWalletOption }) => {
+import Unstoppable from "./unstoppabledomains/Unstoppable";
+
+
+const Navbar = ({ setOpenWalletOption, userAddress }) => {
   const cookie = new Cookies();
   const [address, setAddress] = useState(cookie.get("account"));
   const location = useLocation();
+
+ 
 
   useEffect(() => {
     const addr = cookie.get("account");
@@ -22,12 +27,14 @@ const Navbar = ({ setOpenWalletOption }) => {
   return (
     <>
       <div className="navbar-main">
-        <div className="navbar-left">
-          <img src={logo} alt="logo" />
-          <div className="navbar-logo">
-            <span>NullValue3.0</span>
+        <Link className="logo_link" to="/">
+          <div className="navbar-left">
+            <img src={logo} alt="logo" />
+            <div className="navbar-logo">
+              <span>NullValue 3.0</span>
+            </div>
           </div>
-        </div>
+        </Link>
         <div className="navbar-middle">
           {/* <div className="searchbar">
             <input type="text" />
@@ -35,15 +42,7 @@ const Navbar = ({ setOpenWalletOption }) => {
         </div>
         <div className="navbar-right">
           <ul>
-            <li className={window.location.pathname === "/" ? "active" : null}>
-              <Link to="/">Home</Link>
-            </li>
-            <li
-              className={window.location.pathname === "/info" ? "active" : null}
-            >
-              <Link to="/info">Crypto News</Link>
-            </li>
-            {address ? (
+            {address || userAddress ? (
               <>
                 <li
                   className={
@@ -72,13 +71,7 @@ const Navbar = ({ setOpenWalletOption }) => {
                 >
                   <Link to="/add-article">Add Article</Link>
                 </li>
-                <li
-                  className={
-                    window.location.pathname === "/message" ? "active" : null
-                  }
-                >
-                  <Link to="/message">Messages</Link>
-                </li>
+
                 <li
                   className={
                     window.location.pathname === "/find-profile"
@@ -95,18 +88,32 @@ const Navbar = ({ setOpenWalletOption }) => {
                 >
                   <Link to="profile">Profile</Link>
                 </li>
+                <li>
+                {userAddress
+                    ?
+                      <span className="udname">{userAddress}</span>
+                    : null}
+                </li>
               </>
             ) : (
-              <li>
-                <button
-                  className="connect-btn"
-                  onClick={() => {
-                    setOpenWalletOption(true);
-                  }}
-                >
-                  Connect
-                </button>
-              </li>
+              <>
+                
+                <li>
+                  
+                   
+                    <button
+                    className="connect-btn"
+                    onClick={() => {
+                      setOpenWalletOption(true);
+                    }}
+                    
+                  >
+                    <span className="text">Connect Wallet</span>
+                  </button>
+                  
+                  
+                </li>
+              </>
             )}
           </ul>
         </div>

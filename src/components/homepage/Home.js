@@ -4,6 +4,8 @@ import "./home.css";
 import Downarrow from "../down-arrow";
 import Logo from "./logo.png";
 import Faq from "react-faq-component";
+import { Intercom, Window, Launcher } from "@relaycc/receiver";
+
 const data = {
   title: "FAQ (How it works)",
   rows: [
@@ -106,6 +108,7 @@ const Home = () => {
                 Log in - Log in to your profile and make sure you've connected
                 your Metamask wallet.
               </div>
+              <div className="relay"></div>
               <div className="arrow">
                 <Downarrow />
               </div>
