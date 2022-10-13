@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom"; // react-router v4/v5
 import Cookies from "universal-cookie";
-import UAuth from '@uauth/js';
+import UAuth from "@uauth/js";
 
 /********************* WEB3 DEPENDENCIES ********************/
 import { WalletLinkConnector } from "@web3-react/walletlink-connector";
@@ -15,7 +15,7 @@ import { ethers } from "ethers";
 /********************* IMAGES ********************/
 import metamask from "./components/mm.png";
 import coinbase from "./components/cbw.png";
-import ud from "./components/uds.svg"
+import ud from "./components/uds.svg";
 // import walletconnect from "./components/wc.png";
 
 /********************* COMPONENTS ********************/
@@ -57,7 +57,7 @@ const App = () => {
   const [accountBalance, setAccountBalance] = useState("");
   const [isConnected, setIsConnected] = useState(false);
   const [userAddress, setUserAddress] = useState("");
-
+  const [userAuth, setUserAuth] = useState(null);
   //
   const [loading, setLoading] = useState(true);
   const [account, setAccount] = useState(null);
@@ -66,16 +66,22 @@ const App = () => {
   let [error, setErr] = useState(null);
 
   const login = async () => {
-    const uauth = new UAuth({
-      clientID: '4c817aad-7c5c-4076-915e-1643f63d5d13',
-      redirectUri: 'http://localhost:3000',
-      scope:'openid wallet'
-    })
-    const authorization = await uauth.loginWithPopup()
+    const authorization = await userAuth.loginWithPopup();
     console.log(authorization);
     setUserAddress(authorization.idToken.sub);
+    cookie.set("UDaccount", authorization.idToken.sub, {
+      path: "/",
+      maxAge: 3600,
+    });
     setOpenWalletOption(false);
-  }
+  };
+
+  const logout = async () => {
+    await userAuth.logout();
+    cookie.remove("UDaccount");
+    cookie.remove("account");
+    window.location.reload();
+  };
 
   const web3Handler = async () => {
     let accounts = await window.ethereum
@@ -175,6 +181,15 @@ const App = () => {
     }
   }, [connected]);
 
+  useEffect(() => {
+    const uauth = new UAuth({
+      clientID: "4c817aad-7c5c-4076-915e-1643f63d5d13",
+      redirectUri: "http://localhost:3000",
+      scope: "openid wallet",
+    });
+    setUserAuth(uauth);
+  }, []);
+
   const connectWallet = async () => {
     try {
       if (!ethereum) {
@@ -213,6 +228,13 @@ const App = () => {
     }, [ref]);
   }
 
+  useEffect(() => {
+    const addr = cookie.get("UDaccount");
+    if (addr) {
+      setUserAddress(addr);
+    }
+  }, [cookie]);
+
   useOutsideAlerter(wrapperRef);
 
   return (
@@ -224,7 +246,11 @@ const App = () => {
         </Intercom>
 
         <Router>
-          <Navbar setOpenWalletOption={setOpenWalletOption} userAddress={userAddress} />
+          <Navbar
+            setOpenWalletOption={setOpenWalletOption}
+            userAddress={userAddress}
+            logout={logout}
+          />
           <div className="main-content">
             <Routes>
               <Route exact path="/" element={<LandingPage />} />
@@ -366,7 +392,7 @@ const App = () => {
                       alt="coinbase"
                     />
                   </div>
-                   <div className="image">
+                  <div className="image">
                     <img
                       src={ud}
                       onClick={() => login()}

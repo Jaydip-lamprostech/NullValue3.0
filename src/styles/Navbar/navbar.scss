@@ -139,9 +139,22 @@ a.logo_link:hover {
     }
   }
 }
-span.udname{
-  border : 2px solid #1169c1;
+span.udname {
+  border: 2px solid #1169c1;
+  background-color: white;
+  color: #1169c1;
+  padding: 1rem 1.5rem;
+  border-radius: 50px;
+}
+span.ud-logout-btn {
+  border: 2px solid #1169c1;
   padding: 1rem 1.5rem;
   border-radius: 10px;
-
+  cursor: pointer;
+  border-radius: 50px;
+}
+span.ud-logout-btn:hover {
+  border: 2px solid white;
+  background-color: white;
+  color: #172b4d;
 }

@@ -5,7 +5,7 @@ import Cookies from "universal-cookie";
 import "../styles/Navbar/navbar.scss";
 import Unstoppable from "./unstoppabledomains/Unstoppable";
 
-const Navbar = ({ setOpenWalletOption, userAddress }) => {
+const Navbar = ({ setOpenWalletOption, userAddress, logout }) => {
   const cookie = new Cookies();
   const [address, setAddress] = useState(cookie.get("account"));
   const location = useLocation();
@@ -87,7 +87,25 @@ const Navbar = ({ setOpenWalletOption, userAddress }) => {
                 </li>
                 <li>
                   {userAddress ? (
-                    <span className="udname">{userAddress}</span>
+                    <>
+                      <div>
+                        <span className="udname">{userAddress}</span>
+                      </div>
+                    </>
+                  ) : null}
+                </li>
+                <li>
+                  {userAddress ? (
+                    <>
+                      <span
+                        onClick={() => {
+                          logout();
+                        }}
+                        className="ud-logout-btn"
+                      >
+                        Logout
+                      </span>
+                    </>
                   ) : null}
                 </li>
               </>
