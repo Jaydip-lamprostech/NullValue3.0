@@ -184,7 +184,7 @@ const App = () => {
   useEffect(() => {
     const uauth = new UAuth({
       clientID: "4c817aad-7c5c-4076-915e-1643f63d5d13",
-      redirectUri: "http://localhost:3000",
+      redirectUri: "https://null-value.vercel.app/",
       scope: "openid wallet",
     });
     setUserAuth(uauth);
